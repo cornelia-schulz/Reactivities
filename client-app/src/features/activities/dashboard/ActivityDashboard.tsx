@@ -8,6 +8,8 @@ import { ActivityList } from './ActivityList'
 interface IProps {
   activities: IActivity[];
   editMode: boolean;
+  createActivity: (activity: IActivity) => void;
+  editActivity: (activity: IActivity) => void;
   selectActivity: (id: string) => void;
   selectedActivity: IActivity | null;
   setEditMode: (editMode: boolean) => void;
@@ -17,6 +19,8 @@ interface IProps {
 export const ActivityDashboard: React.FC<IProps> = ({
   activities,
   editMode,
+  createActivity,
+  editActivity,
   selectActivity,
   selectedActivity,
   setEditMode,
@@ -29,12 +33,21 @@ export const ActivityDashboard: React.FC<IProps> = ({
       </Grid.Column>
       <GridColumn width={6}>
         {selectedActivity && !editMode && (
-          <ActivityDetails activity={selectedActivity} setEditMode={setEditMode} setSelectedActivity={setSelectedActivity} />
+          <ActivityDetails
+            activity={selectedActivity}
+            setEditMode={setEditMode}
+            setSelectedActivity={setSelectedActivity}
+          />
         )}
-        {editMode && 
-          <ActivityForm activity={selectedActivity!} setEditMode={setEditMode} />
-        }
+        {editMode && (
+          <ActivityForm
+            activity={selectedActivity!}
+            createActivity={createActivity}
+            editActivity={editActivity}
+            setEditMode={setEditMode}
+          />
+        )}
       </GridColumn>
     </Grid>
-  )
+  );
 }
