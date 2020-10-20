@@ -4,10 +4,11 @@ import { IActivity } from '../../../app/models/activity'
 
 interface IProps {
   activities: IActivity[];
+  deleteActivity: (id: string) => void;
   selectActivity: (id: string) => void; 
 }
 
-export const ActivityList: React.FC<IProps> = ({activities, selectActivity}) => {
+export const ActivityList: React.FC<IProps> = ({activities, deleteActivity, selectActivity}) => {
   return (
     <Segment clearing>
       <Item.Group divided>
@@ -22,6 +23,7 @@ export const ActivityList: React.FC<IProps> = ({activities, selectActivity}) => 
               </Item.Description>
               <Item.Extra>
                 <Button floated="right" content="View" color="blue" onClick={() => selectActivity(activity.id)} />
+                <Button floated="right" content="Delete" color="red" onClick={() => deleteActivity(activity.id)} />
                 <Label basic content={activity.category} />
               </Item.Extra>
             </Item.Content>
