@@ -5,25 +5,44 @@ import { IActivity } from '../../../app/models/activity'
 interface IProps {
   activities: IActivity[];
   deleteActivity: (id: string) => void;
-  selectActivity: (id: string) => void; 
+  selectActivity: (id: string) => void;
+  submitting: boolean;
 }
 
-export const ActivityList: React.FC<IProps> = ({activities, deleteActivity, selectActivity}) => {
+export const ActivityList: React.FC<IProps> = ({
+  activities,
+  deleteActivity,
+  selectActivity,
+  submitting
+}) => {
   return (
     <Segment clearing>
       <Item.Group divided>
-        {activities.map(activity => (
+        {activities.map((activity) => (
           <Item key={activity.id}>
             <Item.Content>
-              <Item.Header as='a'>{activity.title}</Item.Header>
+              <Item.Header as="a">{activity.title}</Item.Header>
               <Item.Meta>{activity.date}</Item.Meta>
               <Item.Description>
                 <div>{activity.description}</div>
-                <div>{activity.city}, {activity.venue}</div>
+                <div>
+                  {activity.city}, {activity.venue}
+                </div>
               </Item.Description>
               <Item.Extra>
-                <Button floated="right" content="View" color="blue" onClick={() => selectActivity(activity.id)} />
-                <Button floated="right" content="Delete" color="red" onClick={() => deleteActivity(activity.id)} />
+                <Button
+                  color="blue"
+                  content="View"
+                  floated="right"
+                  onClick={() => selectActivity(activity.id)}
+                />
+                <Button
+                  color="red"
+                  content="Delete"
+                  floated="right"
+                  loading={submitting}
+                  onClick={() => deleteActivity(activity.id)}
+                />
                 <Label basic content={activity.category} />
               </Item.Extra>
             </Item.Content>
@@ -31,5 +50,5 @@ export const ActivityList: React.FC<IProps> = ({activities, deleteActivity, sele
         ))}
       </Item.Group>
     </Segment>
-  )
+  );
 }
