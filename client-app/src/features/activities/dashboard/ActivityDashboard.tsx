@@ -3,7 +3,8 @@ import { Grid, GridColumn } from 'semantic-ui-react'
 import { IActivity } from '../../../app/models/activity'
 import { ActivityDetails } from '../details/ActivityDetails'
 import { ActivityForm } from '../form/ActivityForm'
-import { ActivityList } from './ActivityList'
+import ActivityList from './ActivityList'
+import { observer } from 'mobx-react-lite'
 
 interface IProps {
   activities: IActivity[];
@@ -19,7 +20,7 @@ interface IProps {
   target: string;
 }
 
-export const ActivityDashboard: React.FC<IProps> = ({
+const ActivityDashboard: React.FC<IProps> = ({
   activities,
   editMode,
   createActivity,
@@ -65,3 +66,5 @@ export const ActivityDashboard: React.FC<IProps> = ({
     </Grid>
   );
 }
+
+export default observer(ActivityDashboard);
