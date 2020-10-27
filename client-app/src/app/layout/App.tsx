@@ -17,10 +17,10 @@ const App = () => {
   const [submitting, setSubmitting] = useState(false);
   const [target, setTarget] = useState('');
 
-  const handleSelectActivity = (id: string) => {
-    setEditMode(false);
-    setSelectedActivity(activities.filter(activity => activity.id === id)[0]);
-  }
+  // const handleSelectActivity = (id: string) => {
+  //   setEditMode(false);
+  //   setSelectedActivity(activities.filter(activity => activity.id === id)[0]);
+  // }
 
   const handleOpenCreateForm = () => {
     setSelectedActivity(null);
@@ -65,12 +65,9 @@ const App = () => {
       <Container style={{marginTop: '7em'}}>
         <ActivityDashboard
           activities={activityStore.activities}
-          editMode={editMode}
           createActivity={handleCreateActivity}
           deleteActivity={handleDeleteActivity}
           editActivity={handleEditActivity}
-          selectActivity={handleSelectActivity}
-          selectedActivity={selectedActivity}
           setEditMode={setEditMode}
           setSelectedActivity={setSelectedActivity}
           submitting={submitting}
