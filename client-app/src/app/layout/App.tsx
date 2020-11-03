@@ -1,7 +1,7 @@
 import React, { Fragment, SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { Container } from 'semantic-ui-react';
 import { IActivity } from '../models/activity';
-import { NavBar } from '../../features/nav/NavBar';
+import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import agent from '../api/agent';
 import ActivityStore from '../stores/activityStore'
@@ -17,25 +17,6 @@ const App = () => {
   const [submitting, setSubmitting] = useState(false);
   const [target, setTarget] = useState('');
 
-  // const handleSelectActivity = (id: string) => {
-  //   setEditMode(false);
-  //   setSelectedActivity(activities.filter(activity => activity.id === id)[0]);
-  // }
-
-  const handleOpenCreateForm = () => {
-    setSelectedActivity(null);
-    setEditMode(true);
-  }
-
-  const handleCreateActivity = (activity: IActivity) => {
-    setSubmitting(true);
-    agent.Activities.create(activity).then(() => {
-      setActivities([...activities, activity]);
-      setSelectedActivity(activity);
-      setEditMode(false);
-    }).then(() => setSubmitting(false))
-  }
-
   const handleDeleteActivity = (event: SyntheticEvent<HTMLButtonElement>, id: string) => {
     setSubmitting(true);
     setTarget(event.currentTarget.name)
@@ -44,33 +25,19 @@ const App = () => {
     }).then(() => setSubmitting(false))
   }
 
-  const handleEditActivity = (activity: IActivity) => {
-    setSubmitting(true);
-    agent.Activities.update(activity).then(() => {
-      setActivities([...activities.filter(a => a.id !== activity.id), activity]);
-      setSelectedActivity(activity);
-      setEditMode(false);
-    }).then(() => setSubmitting(false))
-  }
-
   useEffect(() => {
     activityStore.loadActivities();
+    console.log('here')
   }, [activityStore]);
 
   if (activityStore.loadingInitial) return <LoadingComponent content='Loading activities...' />
 
   return (
     <Fragment>
-      <NavBar openCreateForm={handleOpenCreateForm} />
+      <NavBar />
       <Container style={{marginTop: '7em'}}>
         <ActivityDashboard
-          activities={activityStore.activities}
-          createActivity={handleCreateActivity}
           deleteActivity={handleDeleteActivity}
-          editActivity={handleEditActivity}
-          setEditMode={setEditMode}
-          setSelectedActivity={setSelectedActivity}
-          submitting={submitting}
           target={target}
         />
       </Container>
