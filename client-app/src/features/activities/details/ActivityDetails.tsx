@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
 import ActivityStore from '../../../app/stores/activityStore';
 
-const ActivityDetails = () => {
+export const ActivityDetails = observer(() => {
 
   const activityStore = useContext(ActivityStore);
   const { selectedActivity: activity, openEditForm, cancelFormOpen } = activityStore;
@@ -28,6 +28,4 @@ const ActivityDetails = () => {
       </Card.Content>
   </Card>
   )
-}
-
-export default observer(ActivityDetails);
+});
