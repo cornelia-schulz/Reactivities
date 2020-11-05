@@ -4,7 +4,6 @@ import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import ActivityStore from '../stores/activityStore';
 import { LoadingComponent } from './LoadingComponent';
-import { observer } from 'mobx-react-lite';
 
 
 const App = () => {
@@ -12,7 +11,7 @@ const App = () => {
 
   useEffect(() => {
     activityStore.loadActivities();
-    console.log('here')
+    console.log('loading activities');
   }, [activityStore]);
 
   if (activityStore.loadingInitial) return <LoadingComponent content='Loading activities...' />
@@ -27,4 +26,4 @@ const App = () => {
   );
 }
 
-export default observer(App);
+export default App;

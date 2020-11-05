@@ -6,7 +6,7 @@ import ActivityStore from '../../../app/stores/activityStore';
 export const ActivityDetails = observer(() => {
 
   const activityStore = useContext(ActivityStore);
-  const { selectedActivity: activity, openEditForm, cancelFormOpen } = activityStore;
+  const { selectedActivity: activity, openEditForm, cancelSelectedActivity } = activityStore;
 
   return (
     <Card fluid>
@@ -23,7 +23,7 @@ export const ActivityDetails = observer(() => {
       <Card.Content extra>
         <Button.Group widths={2}>
           <Button basic color="blue" content="Edit" onClick={() => openEditForm(activity!.id)} />
-          <Button basic color="grey" content="Cancel" onClick={cancelFormOpen}/>
+          <Button basic color="grey" content="Cancel" onClick={cancelSelectedActivity}/>
         </Button.Group>
       </Card.Content>
   </Card>
