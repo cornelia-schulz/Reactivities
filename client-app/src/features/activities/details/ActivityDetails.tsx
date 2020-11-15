@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Button, Card, Image } from 'semantic-ui-react';
 import ActivityStore from '../../../app/stores/activityStore';
 
-export const ActivityDetails = observer(() => {
+export const ActivityDetails: React.FC = observer(() => {
 
   const activityStore = useContext(ActivityStore);
   const { selectedActivity: activity, openEditForm, cancelSelectedActivity } = activityStore;

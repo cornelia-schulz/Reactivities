@@ -3,6 +3,7 @@ import { Container } from 'semantic-ui-react';
 import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import ActivityStore from '../stores/activityStore';
+import { observer } from 'mobx-react-lite';
 import { LoadingComponent } from './LoadingComponent';
 
 
@@ -20,10 +21,11 @@ const App = () => {
     <Fragment>
       <NavBar />
       <Container style={{marginTop: '7em'}}>
+        <h1>Hello {activityStore.editMode}</h1>
         <ActivityDashboard />
       </Container>
     </Fragment>
   );
 }
 
-export default App;
+export default observer(App);

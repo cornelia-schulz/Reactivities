@@ -5,7 +5,7 @@ import { IActivity } from '../models/activity';
 
 configure({enforceActions: 'always'});
 
-export class ActivityStore {
+class ActivityStore {
   @observable activities: IActivity[] = [];
   @observable activityRegistry = new Map();
   @observable editMode = false;
@@ -116,8 +116,5 @@ export class ActivityStore {
     this.editMode = false;
   }
 }
-
-// const store = new ActivityStore();
-// export default store;
 
 export default createContext(new ActivityStore());
