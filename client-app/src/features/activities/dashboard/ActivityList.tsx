@@ -9,7 +9,6 @@ export const ActivityList: React.FC = observer(() => {
   const { activitiesByDate, deleteActivity, selectActivity, submitting, target } = activityStore;
 
   return (
-    console.log('activities in list ', activitiesByDate),
     <Segment clearing>
       <Item.Group divided>
         {activitiesByDate.map((activity) => (

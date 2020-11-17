@@ -12,7 +12,6 @@ const App = () => {
 
   useEffect(() => {
     activityStore.loadActivities();
-    console.log('loading activities');
   }, [activityStore]);
 
   if (activityStore.loadingInitial) return <LoadingComponent content='Loading activities...' />
@@ -21,7 +20,6 @@ const App = () => {
     <Fragment>
       <NavBar />
       <Container style={{marginTop: '7em'}}>
-        <h1>Hello {activityStore.editMode}</h1>
         <ActivityDashboard />
       </Container>
     </Fragment>

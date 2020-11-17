@@ -1,4 +1,4 @@
-import { action, computed, configure, observable, runInAction } from 'mobx';
+import { action, computed, configure, makeObservable, observable, runInAction } from 'mobx';
 import { createContext, SyntheticEvent } from 'react';
 import agent from '../api/agent';
 import { IActivity } from '../models/activity';
@@ -14,6 +14,10 @@ class ActivityStore {
   @observable submitting = false;
   @observable target = '';
 
+  constructor() {
+    makeObservable(this)
+  }
+
   @computed get activitiesByDate() {
     return Array.from(this.activityRegistry.values()).sort((a,b) => Date.parse(a.date) - Date.parse(b.date));
   }
@@ -28,7 +32,6 @@ class ActivityStore {
 
   @action createActivity = async (activity: IActivity) => {
     this.submitting = true;
-    console.log('create activity');
     try {
       await agent.Activities.create(activity);
       runInAction(() => {
@@ -70,6 +73,7 @@ class ActivityStore {
       runInAction(() => {
         this.activityRegistry.set(activity.id, activity);
         this.selectedActivity = activity;
+        this.editMode = false;
         this.submitting = false;
       })
     } catch (error) {
@@ -89,7 +93,6 @@ class ActivityStore {
           activity.date = activity.date.split('.')[0]
           this.activityRegistry.set(activity.id, activity);
         });
-        console.log('loading activities ', activities);
         this.loadingInitial = false;
       })
     } catch (error) {
@@ -103,7 +106,6 @@ class ActivityStore {
   @action openCreateForm = () => {
     this.editMode = true;
     this.selectedActivity = undefined;
-    console.log('open form');
   }
 
   @action openEditForm = (id: string) => {
