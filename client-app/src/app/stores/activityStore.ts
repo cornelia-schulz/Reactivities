@@ -14,6 +14,7 @@ class ActivityStore {
   @observable submitting = false;
   @observable target = '';
 
+  // constructor is needed for decorators to work
   constructor() {
     makeObservable(this)
   }
