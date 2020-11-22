@@ -104,6 +104,28 @@ class ActivityStore {
     }
   }
 
+  @action loadActivity = async (id: string) => {
+    let activity = this.getActivity(id);
+    if(activity) {
+      this.selectedActivity = activity
+    } else {
+      this.loadingInitial = true;
+      try {
+        activity = await agent.Activities.details(id);
+        runInAction('getting activity', () => {
+          this.selectedActivity = activity;
+          this.loading = false;
+        })
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  getActivity = (id: string) => {
+    return this.activityRegistry.get(id);
+  }
+
   @action openCreateForm = () => {
     this.editMode = true;
     this.selectedActivity = undefined;

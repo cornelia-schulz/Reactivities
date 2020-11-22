@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import ActivityStore from '../../../app/stores/activityStore';
+import { Link } from 'react-router-dom';
 
 export const ActivityList: React.FC = observer(() => {
 
@@ -24,10 +25,10 @@ export const ActivityList: React.FC = observer(() => {
               </Item.Description>
               <Item.Extra>
                 <Button
+                  as={Link} to="{`/activities/${activity.id}`}"
                   color="blue"
                   content="View"
                   floated="right"
-                  onClick={() => selectActivity(activity.id)}
                 />
                 <Button
                   color="red"
