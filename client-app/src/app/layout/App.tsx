@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react';
 import NavBar from '../../features/nav/NavBar';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 import ActivityStore from '../stores/activityStore';
-import ActivityDetails from '../../features/activities/details/ActivityDetails';
+import { ActivityDetails }  from '../../features/activities/details/ActivityDetails';
 import { observer } from 'mobx-react-lite';
 import { LoadingComponent } from './LoadingComponent';
 import { Route } from 'react-router-dom';
@@ -25,9 +25,9 @@ const App = () => {
       <NavBar />
       <Container style={{marginTop: '7em'}}>   
         <Route exact path='/' component={HomePage} />
-        <Route path='/activities' component={ActivityDashboard} />
+        <Route exact path='/activities' component={ActivityDashboard} />
         <Route path='/activities/:id' component={ActivityDetails} />
-        <Route path='/createActivity' component={ActivityForm} />
+        <Route path={['/createActivity', '/editActivity/:id']} component={ActivityForm} />
       </Container>
     </Fragment>
   );

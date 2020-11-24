@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export const ActivityList: React.FC = observer(() => {
 
   const activityStore = useContext(ActivityStore);
-  const { activitiesByDate, deleteActivity, selectActivity, submitting, target } = activityStore;
+  const { activitiesByDate, deleteActivity, submitting, target } = activityStore;
 
   return (
     <Segment clearing>
@@ -25,7 +25,7 @@ export const ActivityList: React.FC = observer(() => {
               </Item.Description>
               <Item.Extra>
                 <Button
-                  as={Link} to="{`/activities/${activity.id}`}"
+                  as={Link} to={`/activities/${activity.id}`}
                   color="blue"
                   content="View"
                   floated="right"

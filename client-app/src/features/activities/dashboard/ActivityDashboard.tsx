@@ -9,22 +9,14 @@ import ActivityStore from '../../../app/stores/activityStore';
 const ActivityDashboard: React.FC = () => {
 
   const activityStore = useContext(ActivityStore);
-  const { editMode, selectedActivity } = activityStore;
+  const { editMode, activity } = activityStore;
   return (
     <Grid>
       <Grid.Column width={10}>
         <ActivityList />
       </Grid.Column>
       <GridColumn width={6}>
-        {selectedActivity && !editMode && (
-          <ActivityDetails />
-        )}
-        {editMode && (
-          <ActivityForm
-            activity={selectedActivity!}
-            key={(selectedActivity && selectedActivity.id) || 0}
-          />
-        )}
+        <h2>activity filters</h2>
       </GridColumn>
     </Grid>
   );
