@@ -13,11 +13,11 @@ interface DetailParams {
 export const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = observer(({history, match}) => {
 
   const activityStore = useContext(ActivityStore);
-  const {  activity, loadActivity, loadingInitial, openEditForm, cancelSelectedActivity } = activityStore;
+  const {  activity, loadActivity, loadingInitial} = activityStore;
 
   useEffect(() => {
     loadActivity(match.params.id);
-  }, [loadActivity])
+  }, [loadActivity, match.params.id])
 
   if (loadingInitial || !activity) return <LoadingComponent content="Loading activity..." />
   return (
@@ -34,7 +34,7 @@ export const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = obse
       </Card.Content>
       <Card.Content extra>
         <Button.Group widths={2}>
-          <Button as={Link} to={`/editActivity/$(activity.id)`} basic color="blue" content="Edit" />
+          <Button as={Link} to={`/editActivity/${activity.id}`} basic color="blue" content="Edit" />
           <Button basic color="grey" content="Cancel" onClick={() => history.push('/activities')}/>
         </Button.Group>
       </Card.Content>
