@@ -16,13 +16,11 @@ export const ActivityList: React.FC = observer(() => {
           <Label size='large' color='blue'>
             {group}
           </Label>
-          <Segment clearing>
-            <Item.Group divided>
-              {activities.map((activity) => (
-                <ActivityListItem activity={activity} key={activity.id} />
-              ))}
-            </Item.Group>
-          </Segment>
+          <Item.Group divided>
+            {activities.map((activity) => (
+              <ActivityListItem activity={activity} key={activity.id} />
+            ))}
+          </Item.Group>
         </Fragment>
       ))}
     </Fragment>
