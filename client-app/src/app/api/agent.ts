@@ -3,6 +3,10 @@ import { IActivity } from '../models/activity';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+axios.interceptors.response.use(undefined, error => {
+  console.log(error.response);
+})
+
 const responseBody = (response: AxiosResponse) => response.data;
 
 // slow things down, so I can test loading indicators and what things would look like on a slower connection
@@ -24,4 +28,5 @@ const Activities = {
   delete: (id: string) => requests.delete(`/activities/${id}`)
 }
 
+// eslint-disable-next-line
 export default { Activities };
