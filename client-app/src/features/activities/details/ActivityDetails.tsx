@@ -14,7 +14,7 @@ interface DetailParams {
   id: string
 }
 
-export const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = observer(({history, match}) => {
+export const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = observer(({match}) => {
 
   const activityStore = useContext(ActivityStore);
   const { activity, loadActivity, loadingInitial} = activityStore;
@@ -23,11 +23,11 @@ export const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = obse
     loadActivity(match.params.id);
   }, [loadActivity, match.params.id])
 
-  if (!activity)
-    return <h2>Activity not found</h2>
-
   if (loadingInitial)
     return <LoadingComponent content="Loading activity..." />
+
+  if (!activity)
+    return <h2>Activity not found</h2>
 
   return (
     <Grid>

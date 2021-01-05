@@ -93,6 +93,7 @@ class ActivityStore {
         this.submitting = false;
       })
     } catch (error) {
+      console.log('edit error 0', error);
       runInAction(() => {
         console.log('edit error', error);
         this.submitting = false;
@@ -114,9 +115,9 @@ class ActivityStore {
       console.log(this.groupActivitiesByDate(activities));
     } catch (error) {
       runInAction(() => {
-        console.log('load error: ', error);
         this.loadingInitial = false;
       })
+      console.error(error);
     }
   }
 
@@ -133,7 +134,10 @@ class ActivityStore {
           this.loadingInitial = false;
         })
       } catch (error) {
-        console.log(error);
+        runInAction(() => {
+          this.loadingInitial = false;
+        })
+        console.error(error);
       }
     }
   }
