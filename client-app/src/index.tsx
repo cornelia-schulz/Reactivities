@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
 import ScrollToTop from './app/layout/ScrollToTop';
 import dateFnsLocalizer from 'react-widgets-date-fns';
 
-dateFnsLocalizer();
+dateFnsLocalizer()
 
 export const history = createBrowserHistory();
 

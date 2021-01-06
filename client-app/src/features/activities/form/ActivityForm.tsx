@@ -10,6 +10,7 @@ import TextInput from "../../../app/common/form/TextInput";
 import TextAreaInput from "../../../app/common/form/TextAreaInput";
 import { SelectInput } from "../../../app/common/form/SelectInput";
 import { category } from "../../../app/common/options/categoryOptions";
+import DateInput from "../../../app/common/form/DateInput";
 
 interface DetailParams {
   id: string
@@ -18,23 +19,16 @@ interface DetailParams {
 export const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = observer(({history, match}) => {
   const activityStore = useContext(ActivityStore);
   const { activity: initialFormState, cancelFormOpen, clearActivity, loadActivity, submitting } = activityStore;
-  const initialiseForm = () => {
-    if (initialFormState) {
-      return initialFormState;
-    } else {
-      return {
-        id: "",
-        title: "",
-        category: "",
-        description: "",
-        date: "",
-        city: "",
-        venue: "",
-      };
-    }
-  };
 
-  const [activity, setActivity] = useState<IActivity>(initialiseForm);
+  const [activity, setActivity] = useState<IActivity>({
+    id: "",
+    title: "",
+    category: "",
+    description: "",
+    date: null,
+    city: "",
+    venue: "",
+  });
 
   useEffect(() => {
     if (match.params.id && activity.id.length > 0) {
@@ -92,7 +86,7 @@ export const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = observe
                   value={activity.category}
                 />
                 <Field
-                  component={TextInput}
+                  component={DateInput}
                   name="date"
                   placeholder="Date"
                   value={activity.date}
