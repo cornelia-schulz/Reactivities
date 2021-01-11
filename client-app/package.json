@@ -25,6 +25,7 @@
     "react-toastify": "^6.2.0",
     "react-widgets": "^4.2.2",
     "react-widgets-date-fns": "^4.0.26",
+    "revalidate": "^1.2.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.0",
     "typescript": "^3.7.5",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.6"
+    "@types/react-router-dom": "^5.1.6",
+    "@types/revalidate": "^1.1.2"
   }
 }
