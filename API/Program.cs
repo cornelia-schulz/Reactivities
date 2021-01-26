@@ -23,6 +23,7 @@ namespace API
                 {
                     var context = services.GetRequiredService<DataContext>();
                     var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                    var signInManager = services.GetRequiredService<SignInManager<AppUser>>();
                     context.Database.Migrate();
                     Seed.SeedData(context, userManager).Wait();
                 }

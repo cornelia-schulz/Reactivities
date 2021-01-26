@@ -1,4 +1,6 @@
-﻿using Domain;
+﻿// dotnet tool install --global dotnet-ef
+
+using Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
